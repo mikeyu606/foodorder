@@ -1,31 +1,44 @@
 import { StyleSheet } from 'react-native';
-
 import EditScreenInfo from '@/src/components/EditScreenInfo';
-import { Text, View } from '@/src/components/Themed';
+import { Text, View} from '@/src/components/Themed';
+
+import Color from '../../constants/Colors';
+import products from '../../../assets/data/products';
+
+const product = products[1]; //get the first product which is an object called pepperoni pizza
+
+import { Image } from 'react-native';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello World</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <Image source={{ uri: product.image }} style={styles.image} />
+      <Text style={styles.title}>{product.name}</Text>
+      <Text style={styles.price}>${product.price}</Text>
     </View>
   );
 }
 
+//create object created styles 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding:10,
+    borderRadius: 10,
+  
   },
-  title: {
+  title: { //nested object?
     fontSize: 20,
     fontWeight: 'bold',
+    marginVertical: 10,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  price: {
+    color: Color.light.tint,
+    fontWeight: 'bold',
+  },
+  image: {
+
+    width: '100%',
+    aspectRatio: 1,
   },
 });
